@@ -229,16 +229,16 @@
     transition: transform .1s ease, box-shadow .3s ease, background .3s ease, color .3s ease;
   }
   .btn:active { transform: scale(.97); }
-  .btn-primary { background: var(--accent); color: var(--accent-ink); }
-  .btn-primary:hover { box-shadow: 0 0 24px rgba(195, 255, 0, 0.32); }
-  .btn-primary .sweep {
-    position: absolute; inset: 0;
-    background: rgba(255,255,255,0.20);
-    transform: translateY(100%);
-    transition: transform .3s ease;
+  .btn-ghost-green {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
   }
-  .btn-primary:hover .sweep { transform: translateY(0); }
-  .btn-primary span { position: relative; z-index: 1; }
+  .btn-ghost-green:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+    box-shadow: 0 0 24px rgba(195, 255, 0, 0.25);
+  }
   .btn-inner {
     position: relative;
     z-index: 1;
@@ -248,7 +248,8 @@
     gap: 12px;
   }
   .brand-logo { display: block; flex: none; }
-  .brand-logo.moov { height: 17px; width: auto; filter: brightness(0); }
+  .brand-logo.moov { height: 17px; width: auto; } /* native white wordmark */
+  .btn-ghost-green:hover .brand-logo.moov { filter: brightness(0); } /* dark on green fill */
   .brand-logo.athletix { height: 25px; width: auto; fill: currentColor; }
   .brand-logo.athletix path { fill: currentColor; }
   .btn-divider { width: 1px; height: 18px; background: currentColor; opacity: .28; flex: none; }
@@ -491,13 +492,12 @@
             <span>Code: ALESSIO10</span>
           </span>
         </a>
-        <a class="btn btn-primary" href="https://moov-sports.com/" target="_blank" rel="noopener noreferrer" aria-label="MOOV electrolytes — discount code ALESSIO15">
+        <a class="btn btn-ghost-green" href="https://moov-sports.com/" target="_blank" rel="noopener noreferrer" aria-label="MOOV electrolytes — discount code ALESSIO15">
           <span class="btn-inner">
             <img class="brand-logo moov" src="assets/moov.png" alt="MOOV" width="57" height="17" />
             <span class="btn-divider" aria-hidden="true"></span>
             <span>Code: ALESSIO15</span>
           </span>
-          <span class="sweep" aria-hidden="true"></span>
         </a>
       </div>
 
