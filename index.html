@@ -537,8 +537,8 @@
         <li><span class="pb-label">Backyard Ultra</span><span class="pb-value">26<span class="pb-unit">rounds</span></span></li>
       </ul>
       <div class="pb-since">
-        <span class="pb-since-label">In training since February 2023</span>
-        <span class="pb-since-value"><span id="years-training">3.3</span> years strong</span>
+        <span class="pb-since-label">Running since February 2023</span>
+        <span class="pb-since-value" id="years-training">3+ years</span>
       </div>
     </section>
   </main>
@@ -551,13 +551,16 @@
     // Current year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Years of training — first running session was 1 Feb 2023. Self-updating
-    // so visitors see the experience behind the numbers, one decimal.
+    // Years running — first session was 1 Feb 2023. Self-updating, but shown
+    // in coarse steps so it reads as experience, not an exact stopwatch:
+    // "N+ years", or "N½+ years" once past the half-year mark.
     (function () {
       var start = new Date(2023, 1, 1); // months are 0-based → 1 = February
       var years = (Date.now() - start.getTime()) / (365.25 * 24 * 3600 * 1000);
+      var whole = Math.floor(years);
+      var label = (years - whole >= 0.5) ? whole + "½+ years" : whole + "+ years";
       var el = document.getElementById("years-training");
-      if (el) el.textContent = years.toFixed(1);
+      if (el) el.textContent = label;
     })();
 
     // Share button: Web Share API with clipboard fallback
