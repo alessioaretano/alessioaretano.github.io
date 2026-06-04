@@ -248,8 +248,15 @@
     gap: 12px;
   }
   .brand-logo { display: block; flex: none; }
-  .brand-logo.moov { height: 17px; width: auto; } /* native white wordmark */
-  .btn:hover .brand-logo.moov { filter: brightness(0); } /* dark on filled hover */
+  /* MOOV wordmark painted via mask so it takes the button color (currentColor),
+     blue now, and adapts on hover — same behaviour as the Athletix SVG. */
+  .brand-logo.moov {
+    height: 17px;
+    width: 57px;
+    background-color: currentColor;
+    -webkit-mask: url("assets/moov.png") center / contain no-repeat;
+    mask: url("assets/moov.png") center / contain no-repeat;
+  }
   .brand-logo.athletix { height: 25px; width: auto; fill: currentColor; }
   .brand-logo.athletix path { fill: currentColor; }
   .btn-divider { width: 1px; height: 18px; background: currentColor; opacity: .28; flex: none; }
@@ -494,7 +501,7 @@
         </a>
         <a class="btn btn-ghost" href="https://moov-sports.com/" target="_blank" rel="noopener noreferrer" aria-label="MOOV electrolytes — discount code ALESSIO15">
           <span class="btn-inner">
-            <img class="brand-logo moov" src="assets/moov.png" alt="MOOV" width="57" height="17" />
+            <span class="brand-logo moov" role="img" aria-label="MOOV"></span>
             <span class="btn-divider" aria-hidden="true"></span>
             <span>Code: ALESSIO15</span>
           </span>
