@@ -253,25 +253,32 @@
   .stats {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
   .stat {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 16px;
+    justify-content: flex-start;
+    padding: 14px 8px;
     border-radius: var(--radius);
     background: var(--surface-tile);
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
   .stat-label {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--blue-soft);
+    text-align: center;
+    line-height: 1.25;
+    min-height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 6px;
   }
   .stat-value {
@@ -353,7 +360,8 @@
   @media (max-width: 420px) {
     .card { padding: 24px; gap: 24px; }
     h1 { font-size: 26px; }
-    .stat-value { font-size: 26px; }
+    .stat-value { font-size: 23px; }
+    .stat { padding: 12px 6px; }
     main { padding: 96px 16px 180px; }
   }
 
@@ -414,15 +422,19 @@
         </a>
       </div>
 
-      <!-- Stats -->
-      <div class="stats reveal d3">
+      <!-- Stats — live this week (Mon→now), from Garmin via Selah -->
+      <div class="stats reveal d3" id="stats" aria-live="polite">
         <div class="stat">
           <span class="stat-label">Weekly Volume</span>
-          <span class="stat-value">120<span class="unit">KM</span></span>
+          <span class="stat-value"><span id="stat-km">10</span><span class="unit">KM</span></span>
         </div>
         <div class="stat">
-          <span class="stat-label">Max Duration</span>
-          <span class="stat-value">5:42<span class="unit">H</span></span>
+          <span class="stat-label">Training Time</span>
+          <span class="stat-value"><span id="stat-dur">2:59</span><span class="unit">H</span></span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Strength</span>
+          <span class="stat-value"><span id="stat-str">2</span><span class="unit">×</span></span>
         </div>
       </div>
 
@@ -492,6 +504,33 @@
         card.style.transform = "rotateY(0deg) rotateX(0deg)";
       });
     }
+  </script>
+
+  <script>
+    // Live weekly stats (Mon→now) from Garmin, served by the Selah app.
+    // Silently keeps the numbers already in the markup if the API is down.
+    (function () {
+      var ENDPOINT = "https://selah.alessioaretano.com/api/public/weekly-stats";
+      function fmtDur(sec) {
+        var h = Math.floor(sec / 3600);
+        var m = Math.round((sec % 3600) / 60);
+        if (m === 60) { h += 1; m = 0; }
+        return h + ":" + String(m).padStart(2, "0");
+      }
+      function set(id, val) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = val;
+      }
+      fetch(ENDPOINT, { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+        .then(function (d) {
+          if (!d || d.ok === false) return;
+          if (typeof d.weeklyKm === "number") set("stat-km", String(Math.round(d.weeklyKm)));
+          if (typeof d.durationSeconds === "number") set("stat-dur", fmtDur(d.durationSeconds));
+          if (typeof d.strengthSessions === "number") set("stat-str", String(d.strengthSessions));
+        })
+        .catch(function () { /* keep static fallback values */ });
+    })();
   </script>
 </body>
 </html>
