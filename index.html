@@ -216,6 +216,14 @@
 
   /* ---- Action links ---- */
   .links { width: 100%; display: flex; flex-direction: column; gap: 16px; }
+  .link-item { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .link-cap {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
   .btn {
     position: relative;
     overflow: hidden;
@@ -489,6 +497,7 @@
 
       <!-- Action links -->
       <div class="links reveal d2">
+        <div class="link-item">
         <a class="btn btn-ghost-green" href="https://athlix-performance.com/" target="_blank" rel="noopener noreferrer" aria-label="Athletix apparel — discount code ALESSIO10">
           <span class="btn-inner">
             <svg class="brand-logo athletix" viewBox="0 0 961.44 717.14" aria-hidden="true" focusable="false">
@@ -499,6 +508,9 @@
             <span>Code: ALESSIO10</span>
           </span>
         </a>
+        <span class="link-cap">Sports Apparel</span>
+        </div>
+        <div class="link-item">
         <a class="btn btn-ghost" href="https://moov-sports.com/" target="_blank" rel="noopener noreferrer" aria-label="MOOV electrolytes — discount code ALESSIO15">
           <span class="btn-inner">
             <span class="brand-logo moov" role="img" aria-label="MOOV"></span>
@@ -506,6 +518,8 @@
             <span>Code: ALESSIO15</span>
           </span>
         </a>
+        <span class="link-cap">Electrolytes</span>
+        </div>
       </div>
 
       <!-- Stats — live this week (Mon→now), from Garmin via Selah -->
