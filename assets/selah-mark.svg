@@ -1,7 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" role="img" aria-label="Selah">
-  
-  <rect width="1024" height="1024" fill="#161616"></rect>
-  <ellipse cx="562" cy="341" rx="174" ry="68" fill="#f6f6f4"></ellipse>
-  <ellipse cx="475" cy="534" rx="298" ry="87" fill="#f6f6f4"></ellipse>
-  <ellipse cx="512" cy="752" rx="410" ry="112" fill="#f6f6f4"></ellipse>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-label="Selah">
+  <style>
+    .stone { fill: #161616; }
+    @media (prefers-color-scheme: dark) { .stone { fill: #f6f6f4; } }
+  </style>
+  <ellipse class="stone" cx="106" cy="56" rx="28" ry="12" />
+  <ellipse class="stone" cx="92" cy="96" rx="50" ry="16" />
+  <ellipse class="stone" cx="100" cy="142" rx="72" ry="22" />
 </svg>
