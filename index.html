@@ -21,8 +21,11 @@
 <meta name="twitter:image" content="https://alessioaretano.com/assets/og.jpg" />
 
 <!-- Favicon / app icon: Selah stacked-stones mark (tab + home screen only).
-     Tab favicon = transparent, adapts to light/dark via the SVG + light-stone
-     PNG fallbacks. Home-screen tiles (apple-touch / 192 / 512) keep a bg. -->
+     /favicon.ico = stones-on-dark-tile (16/32/48/64) — der Default-Pfad, den
+     viele Resolver (inkl. MCP-/Connector-Clients) für die Domain abrufen;
+     ohne ihn wird ein generischer "A"-Buchstabe gezeigt.
+     Tab favicon = SVG + light-stone PNG fallbacks. -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/svg+xml" href="assets/selah-mark.svg?v=2" />
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png?v=2" />
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=2" />
